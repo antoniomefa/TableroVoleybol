@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="0dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -26,12 +26,12 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center_horizontal"
                 android:padding="4dp"
-                android:text="Local"
+                android:text="LOCAL"
                 android:textColor="#616161"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/team_a_score"
+                android:id="@+id/local_team_score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:onClick="addOneForTeamA"
+                android:onClick="pointForLocalTeam"
                 android:text="+1 Point" />
 
             <TextView
@@ -90,25 +90,29 @@
                 android:text="SET"
                 android:layout_weight="1"
                 android:background="@android:color/darker_gray"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:textColor="#616161"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/actualSet"
+                android:id="@+id/actualSetBox"
                 android:background="@android:color/darker_gray"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:fontFamily="sans-serif-light"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:padding="4dp"
                 android:layout_weight="2"
                 android:text="1"
                 android:textColor="#000"
                 android:textSize="36sp" />
-            <View
+
+            <TextView
+                android:id="@+id/winnerBox"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:gravity="center"
+                android:text=""
                 android:layout_weight="5"/>
 
         </LinearLayout>
@@ -130,7 +134,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/visitScore"
+                android:id="@+id/visit_team_score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
@@ -144,7 +148,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:onClick="addThreeForTeamB"
+                android:onClick="pointForVisitTeam"
                 android:text="+1 Point" />
 
             <TextView
