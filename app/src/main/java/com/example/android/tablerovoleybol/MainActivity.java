@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     int actualSet = 1;
     int localSets = 0;
     int visitSets = 0;
+    int timeOutLocal = 0;
+    int timeOutVisit = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             localSets = localSets + 1;
             displayLocalSets(localSets);
             if (localSets == 3) {
-                displayWinner("Local gana");
+                displayWinner("Local wins!","Game Over");
             } else {
                 actualSet = actualSet + 1;
                 displayActualSet(actualSet);
@@ -60,14 +62,31 @@ public class MainActivity extends AppCompatActivity {
             visitSets = visitSets + 1;
             displayVisitSets(visitSets);
             if (visitSets == 3) {
-                displayWinner("Visitante gana");
+                displayWinner("Visit wins!","Game Over");
             } else {
                 actualSet = actualSet + 1;
                 displayActualSet(actualSet);
                 newSet();
             }
         }
+    }
 
+    public void timeOutForLocalTeam(View v) {
+        if(timeOutLocal<2) {
+            timeOutLocal = timeOutLocal + 1;
+            displayWinner("", "Time out 30 seconds");
+        } else {
+            displayWinner("Keep playing!", "No more time out");
+        }
+    }
+
+    public void timeOutForVisitTeam(View v) {
+        if(timeOutVisit<2) {
+            timeOutVisit = timeOutVisit + 1;
+            displayWinner("", "Time out 30 seconds");
+        } else {
+            displayWinner("Keep playing!", "No more time out");
+        }
     }
 
     public void displayForLocalTeam(int score) {
@@ -95,15 +114,18 @@ public class MainActivity extends AppCompatActivity {
         setView.setText(String.valueOf(set));
     }
 
-    public void displayWinner(String win) {
+    public void displayWinner(String win, String message) {
         TextView winnerView = (TextView) findViewById(R.id.winnerBox);
         winnerView.setText(String.valueOf(win));
-        Toast.makeText(getApplicationContext(), "Fin del juego!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), String.valueOf(message), Toast.LENGTH_SHORT).show();
     }
 
     public void newSet() {
         scoreLocalTeam = 0;
         scoreVisitTeam = 0;
+        timeOutLocal = 0;
+        timeOutVisit = 0;
+        displayWinner("", "New Set");
         displayForLocalTeam(scoreLocalTeam);
         displayForVisitTeam(scoreVisitTeam);
     }
