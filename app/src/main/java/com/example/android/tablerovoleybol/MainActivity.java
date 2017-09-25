@@ -1,10 +1,13 @@
 package com.example.android.tablerovoleybol;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import static android.graphics.Color.parseColor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,12 +26,18 @@ public class MainActivity extends AppCompatActivity {
     public void pointForLocalTeam(View v) {
         scoreLocalTeam = scoreLocalTeam + 1;
         displayForLocalTeam(scoreLocalTeam);
+
+         /* Activa el indicador de Saque/Serve */
+        TextView serveView = (TextView) findViewById(R.id.localServe);
+        serveView.setBackgroundColor(0xFF00FF00);
+        TextView serveView2 = (TextView) findViewById(R.id.visitServe);
+        serveView2.setBackgroundColor(0xffa9a9a9);
+
         if ((scoreLocalTeam > 24) && (scoreLocalTeam > scoreVisitTeam + 2)) {
             localSets = localSets + 1;
             displayLocalSets(localSets);
             if (localSets == 3) {
                 displayWinner("Local gana");
-                Toast.makeText(getApplicationContext(), "Local gana", Toast.LENGTH_SHORT).show();
             } else {
                 actualSet = actualSet + 1;
                 displayActualSet(actualSet);
@@ -40,12 +49,18 @@ public class MainActivity extends AppCompatActivity {
     public void pointForVisitTeam(View v) {
         scoreVisitTeam = scoreVisitTeam + 1;
         displayForVisitTeam(scoreVisitTeam);
+
+        /* Activa el indicador de Saque/Serve */
+        TextView serveView = (TextView) findViewById(R.id.visitServe);
+        serveView.setBackgroundColor(0xFF00FF00);
+        TextView serveView2 = (TextView) findViewById(R.id.localServe);
+        serveView2.setBackgroundColor(0xffa9a9a9);
+
         if ((scoreVisitTeam > 24) && (scoreVisitTeam > scoreLocalTeam + 2)) {
             visitSets = visitSets + 1;
             displayVisitSets(visitSets);
             if (visitSets == 3) {
                 displayWinner("Visitante gana");
-                Toast.makeText(getApplicationContext(), "Visitante gana", Toast.LENGTH_SHORT).show();
             } else {
                 actualSet = actualSet + 1;
                 displayActualSet(actualSet);
@@ -83,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
     public void displayWinner(String win) {
         TextView winnerView = (TextView) findViewById(R.id.winnerBox);
         winnerView.setText(String.valueOf(win));
+        Toast.makeText(getApplicationContext(), "Fin del juego!", Toast.LENGTH_SHORT).show();
     }
 
     public void newSet() {
